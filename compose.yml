@@ -1,0 +1,33 @@
+services:
+   mongo:
+     image: mongo:6
+     container_name: jeffika-mongo
+     restart: always
+     ports:
+      - "27017:27017"
+
+     volumes:
+      - mongo_data:/data/db
+
+
+   server:
+    build: ./server
+    container_name: jeffika-server
+    restart: always
+    ports:
+      - "4051:4051"
+    env_file:          # ✅ ADD THIS
+    - ./server/.env
+    depends_on:
+      - mongo
+
+   client:
+    build: ./client
+    container_name: jeffika-client
+    restart: always
+    ports:
+      - "5173:5173"
+    depends_on: 
+      - server
+volumes:
+  mongo_data:

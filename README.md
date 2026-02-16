@@ -28,6 +28,8 @@ This project is built using the MERN Stack:
 
 - Node.js – Server environment
 
+- Docker & Docker Compose – Containerization
+
 # 🔐 Authentication
 
 Jeffika Cabs includes:
@@ -38,28 +40,55 @@ Jeffika Cabs includes:
 
 - Secure authentication using JWT
 
-# 🚀 Installation & Setup
+# 🔐 Environment Variables
 
-Follow these steps to run the project locally:
+# The app requires environment variables to function correctly.
 
-1️⃣ Clone the repository
-- git clone https://github.com/your-username/jeffika-cabs.git
-- cd jeffika-cabs
+- Step 1 – Create .env in server/
+- server/.env
+- Step 2 – Add your credentials
 
-# 2️⃣ Install dependencies
+Use the template below. Do NOT commit this file to GitHub.
 
-# Backend
-- cd server
-- npm install
-
-# Frontend
-cd client
-npm install
-
-# 3️⃣ Create Environment Variables
-
-Inside the server folder, create a .env file:
-
-- MONGO_URI=your_mongodb_connection_string
-- PORT=5000
+- PORT=4051
+- MONGO_URI=mongodb://mongo:27017/jeffika-cabs
 - JWT_SECRET=your_secret_key
+
+- MPESA_PASSKEY=your_mpesa_passkey
+- MPESA_SHORTCODE=your_shortcode
+- MPESA_CONSUMER_SECRET=your_consumer_secret
+- MPESA_CONSUMER_KEY=your_consumer_key
+- MPESA_CALLBACK_URL=https://your-callback-url.com/api/mpesa/callback
+
+- ADMIN_EMAIL=your_admin_email
+- EMAIL_USER=your_email
+- EMAIL_PASS=your_email_password
+
+- RESEND_API_KEY=your_resend_key
+# 📦 Running the App with Docker
+
+The project is fully containerized using Docker Compose.
+
+Requirements
+
+- Docker
+
+- Docker Compose
+
+Check versions:
+
+- docker --version
+- docker-compose --version
+- Step 1 – Build and Start
+
+From the project root:
+
+- docker-compose up --build
+
+# This starts:
+
+- MongoDB
+
+- Backend server
+
+- Frontend UI
